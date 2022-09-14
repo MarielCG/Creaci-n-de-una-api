@@ -62,21 +62,21 @@ def get_CargaDataSet():
 
 @user.get('/pregunta_1', tags = ['Preguntas'])
 def get_Top5Carreras():
-    carreras = conn.execute("SELECT c.year as Año, count(c.IdRace) as Numero_carreras FROM races c group by c.year order by Numero_carreras desc limit 5")
+    carreras = conn.execute("SELECT c.year as Año, count(c.IdRace) as Numero_carreras FROM races c group by c.year order by Numero_carreras desc limit 1")
     return carreras.fetchall()
 
 @user.get('/pregunta_2', tags = ['Preguntas'])
 def get_Top1Piloto():
-    pilotos = conn.execute("SELECT r.IdDriver, d.Forename as Piloto, count(*) AS Cantidad_primeros_puestos FROM results r JOIN drivers d ON (r.IdDriver = d.IdDriver) WHERE r.position = 1 GROUP BY r.IdDriver ORDER BY Cantidad_primeros_puestos desc LIMIT 1")
+    pilotos = conn.execute("SELECT r.IdDriver, concat(d.Forename, ' ',d.Surname) as Piloto, count(*) AS Cantidad_primeros_puestos FROM results r JOIN drivers d ON (r.IdDriver = d.IdDriver) WHERE r.position = 1 GROUP BY r.IdDriver ORDER BY Cantidad_primeros_puestos desc LIMIT 1")
     return pilotos.fetchall()
 
 @user.get('/pregunta_3', tags = ['Preguntas'])
 def get_Top5Recorrido():
-    recorrido = conn.execute ("WITH circuits_race AS (SELECT r.*, c.Name as Nombre_circuito FROM races r JOIN circuits c ON (r.IdCircuit = c.IdCircuit)) SELECT  cr.IdCircuit, cr.Nombre_circuito, sum(r.Laps) as Recorrido_total FROM results r LEFT JOIN circuits_race cr ON (r.IdRace = cr.IdRace) GROUP BY cr.Nombre_circuito ORDER BY Recorrido_total desc LIMIT 5")
+    recorrido = conn.execute ("WITH circuits_race AS (SELECT r.*, c.Name as Nombre_circuito FROM races r JOIN circuits c ON (r.IdCircuit = c.IdCircuit)) SELECT  cr.IdCircuit, cr.Nombre_circuito, sum(r.Laps) as Recorrido_total FROM results r LEFT JOIN circuits_race cr ON (r.IdRace = cr.IdRace) GROUP BY cr.Nombre_circuito ORDER BY Recorrido_total desc LIMIT 1")
     return recorrido.fetchall()
 
     
 @user.get('/pregunta_4', tags = ['Preguntas'])
 def get_TopPilotoSegunConstructor():
-    pilotos_constructor = conn.execute("SELECT r.IdDriver, d.Forename as Piloto, sum(r.Points) AS Puntos_totales FROM results r LEFT JOIN drivers d ON (r.IdDriver = d.IdDriver) LEFT JOIN constructor c ON (r.IdConstructor = c.IdConstructor) WHERE c.Nationality = 'American' or 'British' GROUP BY r.IdDriver ORDER BY Puntos_totales desc LIMIT 1")
+    pilotos_constructor = conn.execute("SELECT r.IdDriver, concat(d.Forename, ' ',d.Surname) as Piloto, sum(r.Points) AS Puntos_totales FROM results r LEFT JOIN drivers d ON (r.IdDriver = d.IdDriver) LEFT JOIN constructor c ON (r.IdConstructor = c.IdConstructor) WHERE c.Nationality in ('American', 'British') GROUP BY r.IdDriver ORDER BY Puntos_totales desc LIMIT 1")
     return pilotos_constructor.fetchall()   
