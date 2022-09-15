@@ -6,6 +6,12 @@ import json
 
 user = APIRouter()
 
+#Portada
+@user.get("/")
+def read_root():
+    saludo = "BIENVENIDO"
+    return saludo
+
 # Cargar el dataset
 
 @user.get('/dataset', tags = ['Carga de DataSet'])
