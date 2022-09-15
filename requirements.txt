@@ -1,5 +1,4 @@
 ﻿anyio==3.6.1
-certifi==2022.06.15
 black==22.8.0
 cffi==1.15.1
 charset-normalizer==2.1.1
