@@ -36,10 +36,10 @@ Nota: En ***requirements.txt*** se encuentran todas las dependencias necesarioas
 
     - **app.py**       : Contiene la inicializacion de la API
     - **db.py**         : Contiene la conxion de la API con nuestra BD  
-    - **user.py_route**: Contiene las diferentes subrutas de nuestra API
-    - **user.py_schema**: Contiene el esquema de las respuestas de las sub rutas.
+    - **user.py (route)**: Contiene las diferentes subrutas de nuestra API
+    - **user.py (schema)**: Contiene el esquema de las respuestas de las sub rutas.
 
-    2.1 En el script **user.py_route**, se tiene 4 sub rutas que muestra la respuesta para las cuatro consultas solicitadas.
+    2.1 En el script **user.py (route)**, se tiene 4 sub rutas que muestran las respuestas para las cuatro consultas solicitadas.
 
     
 3. Con los script realizados, ahora se prueba la funcionalidad de la API a traves de `uvicorn app:app --reload`
