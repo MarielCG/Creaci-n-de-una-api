@@ -72,7 +72,8 @@ def get_Top1Piloto():
 
 @user.get('/pregunta_3', tags = ['Preguntas'])
 def get_Top5Recorrido():
-    recorrido = conn.execute ("WITH circuits_race AS (SELECT r.*, c.Name as Nombre_circuito FROM races r JOIN circuits c ON (r.IdCircuit = c.IdCircuit)) SELECT  cr.IdCircuit, cr.Nombre_circuito, sum(r.Laps) as Recorrido_total FROM results r LEFT JOIN circuits_race cr ON (r.IdRace = cr.IdRace) GROUP BY cr.Nombre_circuito ORDER BY Recorrido_total desc LIMIT 1")
+    # recorrido = conn.execute ("WITH circuits_race AS (SELECT r.*, c.Name as Nombre_circuito FROM races r JOIN circuits c ON (r.IdCircuit = c.IdCircuit)) SELECT  cr.IdCircuit, cr.Nombre_circuito, sum(r.Laps) as Recorrido_total FROM results r LEFT JOIN circuits_race cr ON (r.IdRace = cr.IdRace) GROUP BY cr.Nombre_circuito ORDER BY Recorrido_total desc LIMIT 1")
+    recorrido = conn.execute("SELECT  cr.IdCircuit, cr.Nombre_circuito, sum(r.Laps) as Recorrido_total FROM results r LEFT JOIN (SELECT r.*, c.Name as Nombre_circuito FROM races r JOIN circuits c ON (r.IdCircuit = c.IdCircuit)) as cr ON (r.IdRace = cr.IdRace) GROUP BY cr.Nombre_circuito ORDER BY Recorrido_total desc LIMIT 1")
     return recorrido.fetchall()
 
     
