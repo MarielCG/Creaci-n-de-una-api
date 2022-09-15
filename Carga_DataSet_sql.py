@@ -2,8 +2,10 @@ from sqlalchemy import create_engine
 import pandas as pd
 import json 
 
-# engine = create_engine('mysql+pymysql://sql10519779:GCQw6lAdZU@sql10.freemysqlhosting.net:3306/sql10519779')
 engine = create_engine('mysql+pymysql://root:Clave1601**@localhost:3306/lab_individual')
+
+#Motor para conectar con una BD en la nube 
+# engine = create_engine('mysql+pymysql://sql10519779:GCQw6lAdZU@sql10.freemysqlhosting.net:3306/sql10519779')
 
 
 circuits_csv = pd.read_csv('./Datasets/circuits.csv')

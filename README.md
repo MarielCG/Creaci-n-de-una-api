@@ -63,6 +63,8 @@ A continuacion se presenta imagenes de la API:
 ![img](https://i.imgur.com/AauwhYN.jpg)
 
 - FAST API - PREGUNTA 4: Piloto con mayor cantidad de puntos en total, cuyo constructor sea de nacionalidad sea American o British
+
+
 ![img](https://i.imgur.com/KKYwUpM.jpg)
 
 ----------------------------------------------------------------------------------------------------------------

@@ -7,10 +7,12 @@ user = APIRouter()
 #Portada
 @user.get("/", tags = ["Portada"])
 def read_root():
-    saludo = "BIENVENIDO"
+    saludo = "BIENVENIDO AL PI"
     return saludo
        
 # Resolucion de las preguntas 
+# Cada subruta responde a las consultas solicitadas.
+
 #PREGUNTA 1 Año con más carreras
 @user.get('/pregunta_1', tags = ['Preguntas'], response_model = list[Item_1])
 def get_Top1Carreras():

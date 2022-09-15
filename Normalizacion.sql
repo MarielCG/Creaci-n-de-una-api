@@ -102,7 +102,7 @@ ALTER TABLE qualifying DROP `index`;
 #ALTER TABLE qualifying CHANGE    `Position`		 INT NOT NULL DEFAULT 0,
 
 /*Creamos indices de las tablas determinando claves primarias y foraneas*/
-/*Creamos las relaciones entre las tablas, y con ellas las restricciones*/
+/*Creamos las relaciones entre las tablas y sus restricciones*/
 
 ALTER TABLE circuits ADD PRIMARY KEY(IdCircuit);
 ALTER TABLE constructor ADD PRIMARY KEY(IdConstructor);
