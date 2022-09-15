@@ -7,7 +7,7 @@ import json
 user = APIRouter()
 
 #Portada
-@user.get("/")
+@user.get("/", tags = ["Portada"])
 def read_root():
     saludo = "BIENVENIDO"
     return saludo
